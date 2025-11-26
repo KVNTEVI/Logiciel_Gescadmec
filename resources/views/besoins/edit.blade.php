@@ -61,6 +61,7 @@
 
             <button class="btn btn-warning">Mettre à jour</button>
             {{-- Bouton de soumission pour la mise à jour. --}}
+            <a href="{{ route('besoins.index') }}" class="btn btn-secondary">Retour</a>
         </form>
 
     </div>
