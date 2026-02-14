@@ -13,13 +13,17 @@
     <div class="card-body">
 
         {{-- Barre de recherche --}}
-        <form action="{{ route('etudiants.index') }}" method="GET" class="mb-3 d-flex">
+        <form action="{{ route('etudiants.index') }}" method="GET" class="mb-3 d-flex gap-2">
             <input type="text" name="search" value="{{ request('search') }}" 
-                   class="form-control me-2" placeholder="Rechercher par nom ou prénom">
-            <button type="submit" class="btn btn-primary">Rechercher</button>
+                class="form-control" placeholder="Rechercher par nom ou prénom">
+            <button type="submit" class="btn btn-primary">
+                <i class="bi bi-search"></i>
+            </button>
+            @if(request('search'))
+                <a href="{{ route('etudiants.index') }}" class="btn btn-outline-secondary">Effacer</a>
+            @endif
         </form>
-
-        <div class="table-responsive">
+                <div class="table-responsive">
             <table class="table table-bordered table-striped">
                 <thead class="table-dark">
                     <tr>
@@ -60,8 +64,9 @@
         </div>
 
         {{-- Pagination avec conservation de la recherche --}}
-        {{ $etudiants->appends(['search' => request('search')])->links() }}
-
+        <div class="d-flex justify-content-center mt-4">
+            {{ $etudiants->appends(request()->query())->links('pagination::bootstrap-4') }}
+        </div>
     </div>    
 </div>
 @endsection

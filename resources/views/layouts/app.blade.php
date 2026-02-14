@@ -1,75 +1,17 @@
-<!-- <!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <title>GESCADMEC - Dashboard</title> -->
-
-    <!-- Bootstrap -->
-    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
-
-    <style>
-        body {
-            background: #f5f7fa;
-        }
-        .sidebar {
-            height: 100vh;
-            background: #0d6efd;
-            color: white;
-            padding-top: 20px;
-        }
-        .sidebar a {
-            color: white;
-            padding: 12px 20px;
-            display: block;
-            text-decoration: none;
-        }
-        .sidebar a:hover {
-            background: rgba(255,255,255,0.2);
-        }
-    </style>
-</head>
-
-<body>
-
-<div class="d-flex"> -->
-    <!-- Sidebar -->
-    <!-- <div class="sidebar">
-        <h4 class="text-center mb-4">GESCADMEC</h4>
-
-        <a href="{{ route('dashboard') }}"><i class="bi bi-speedometer2"></i> Dashboard</a>
-        <a href="{{ route('etudiants.index') }}"><i class="bi bi-people"></i> Étudiants</a>
-        <a href="{{ route('niveaux.index') }}"><i class="bi bi-layers"></i> Niveaux</a>
-        <a href="{{ route('inscriptions.index') }}"><i class="bi bi-journal-text"></i> Inscriptions</a>
-        <a href="{{ route('paiements.index') }}"><i class="bi bi-cash-coin"></i> Paiements</a>
-        <a href="{{ route('besoins.index') }}"><i class="bi bi-list-task"></i> Besoins</a>
-    </div>
-
-    <!-- Content -->
-    <!-- <div class="p-4 flex-grow-1">
-        @yield('content')
-    </div>
-
-</div>
-
-</body>
-</html> --> 
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
+    <title>@yield('title', 'Tableau de bord') | GESCADMEC</title>
 
-    <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Bootstrap Icons -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
 
     <style>
         body {
             display: flex;
+            background-color: #f4f7f6;
         }
         .sidebar {
             width: 250px;
@@ -77,33 +19,45 @@
             position: fixed;
             background: #0d6efd;
             color: white;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.1);
         }
         .sidebar a {
-            color: white;
-            padding: 20px;
+            color: rgba(255,255,255,0.8);
+            padding: 15px 20px;
             display: block;
             text-decoration: none;
+            transition: all 0.3s;
+            border-left: 4px solid transparent;
         }
         .sidebar a:hover {
-            background: rgba(255,255,255,0.2);
+            background: rgba(255,255,255,0.1);
+            color: white;
         }
+        
+        /* LA CLASSE ACTIVE */
+        .sidebar a.active {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            font-weight: bold;
+            border-left: 4px solid #ffffff;
+        }
+
         .content {
             margin-left: 250px;
             width: calc(100% - 250px);
+            min-height: 100vh;
         }
         .header-top {
             background: #ffffff;
-            padding: 20px;
+            padding: 15px 30px;
             border-bottom: 1px solid #ddd;
             position: sticky;
             top: 0;
             z-index: 10;
-
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
-
         .user-info {
             display: flex;
             align-items: center;
@@ -115,49 +69,50 @@
 
 <body>
 
-    <!-- SIDEBAR -->
     <div class="sidebar">
-        <h4 class="text-center py-3">Menu</h4>
+        <h4 class="text-center py-4 border-bottom border-white border-opacity-25">GESCADMEC</h4>
 
-        <a href="{{ route('dashboard') }}">
-            <i class="bi bi-speedometer2"></i> Tableau de bord
-        </a>
-        <a href="{{ route('etudiants.index') }}">
-            <i class="bi bi-people"></i> Étudiants
-        </a>
-        <a href="{{ route('inscriptions.index') }}">
-            <i class="bi bi-journal-text"></i> Inscriptions
-        </a>
-        <a href="{{ route('paiements.index') }}">
-            <i class="bi bi-cash"></i> Paiements
-        </a>
-        <a href="{{ route('niveaux.index') }}">
-            <i class="bi bi-layers"></i> Niveaux
-        </a>
-        <a href="{{ route('besoins.index') }}">
-            <i class="bi bi-exclamation-circle"></i> Besoins
-        </a>
+        <div class="mt-2">
+            <a href="{{ route('dashboard') }}" class="{{ request()->routeIs('dashboard') ? 'active' : '' }}">
+                <i class="bi bi-speedometer2 me-2"></i> Tableau de bord
+            </a>
+            
+            <a href="{{ route('etudiants.index') }}" class="{{ request()->routeIs('etudiants.*') ? 'active' : '' }}">
+                <i class="bi bi-people me-2"></i> Étudiants
+            </a>
+            
+            <a href="{{ route('inscriptions.index') }}" class="{{ request()->routeIs('inscriptions.*') ? 'active' : '' }}">
+                <i class="bi bi-journal-text me-2"></i> Inscriptions
+            </a>
+            
+            <a href="{{ route('paiements.index') }}" class="{{ request()->routeIs('paiements.*') ? 'active' : '' }}">
+                <i class="bi bi-cash me-2"></i> Paiements
+            </a>
+            
+            <a href="{{ route('niveaux.index') }}" class="{{ request()->routeIs('niveaux.*') ? 'active' : '' }}">
+                <i class="bi bi-layers me-2"></i> Niveaux
+            </a>
+            
+            <a href="{{ route('besoins.index') }}" class="{{ request()->routeIs('besoins.*') ? 'active' : '' }}">
+                <i class="bi bi-exclamation-circle me-2"></i> Besoins
+            </a>
+        </div>
     </div>
 
-    <!-- CONTENU -->
     <div class="content">
 
-        <!-- HEADER FIXE AVEC UTILISATEUR + LOGOUT -->
         <div class="header-top">
-
-            <h4 class="m-0">PRIMAACADEMIE</h4>
+            <h4 class="m-0 text-dark">@yield('title', 'Tableau de bord')</h4>
 
             <div class="user-info">
-                <!-- Nom de l'utilisateur -->
                 <span class="fw-bold text-primary">
                     <i class="bi bi-person-circle"></i>
                     {{ Auth::user()->name }}
                 </span>
 
-                <!-- Bouton Déconnexion -->
-                <form action="{{ route('logout') }}" method="POST">
+                <form action="{{ route('logout') }}" method="POST" class="m-0">
                     @csrf
-                    <button class="btn btn-danger btn-sm">
+                    <button type="submit" class="btn btn-danger btn-sm">
                         <i class="bi bi-box-arrow-right"></i> Déconnexion
                     </button>
                 </form>

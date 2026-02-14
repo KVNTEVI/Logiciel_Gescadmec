@@ -34,11 +34,11 @@
             <div class="mb-3">
                 <label class="form-label">Inscription</label>
                 <select name="id_inscription" class="form-control" required>
-                    <option value="">-- Sélectionner l’inscription --</option>
+                    <option value="">-- Sélectionner l'inscription --</option>
 
                     @foreach($inscriptions as $i)
-                        <option value="{{ $i->id_inscription }}">
-                            Inscription #{{ $i->id_inscription }}
+                        <option value="{{$i->id_inscription}}">
+                            {{ $i->etudiant->nom ?? '' }} {{ $i->etudiant->prenom ?? '' }}
                         </option>
                     @endforeach
 

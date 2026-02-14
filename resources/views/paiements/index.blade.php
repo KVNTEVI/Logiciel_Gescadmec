@@ -60,7 +60,7 @@
                     <td>{{ number_format($p->montant, 2) }} FCFA</td>
                     <td>{{ $p->mode_paiement }}</td>
                     <td>{{ $p->date_paiement }}</td>
-                    <td>{{ $p->inscription->etudiant->nom ?? '' }} {{ $p->inscription->etudiant->prenoms ?? '' }}</td>
+                    <td>{{ $p->inscription->etudiant->nom ?? '' }} {{ $p->inscription->etudiant->prenom ?? '' }}</td>
 
                     <td>
                         <div class="d-flex justify-content-between gap-1" role="group">

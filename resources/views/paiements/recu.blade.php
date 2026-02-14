@@ -111,7 +111,7 @@
 
     <div class="info">
         <p><strong>Reçu N° :</strong> {{ $paiement->id_paiement }}</p>
-        <p><strong>Date d’émission :</strong> {{ date('d/m/Y') }}</p>
+        <p><strong>Date d'émission :</strong> {{ date('d/m/Y') }}</p>
 
         <p><strong>Nom de l'étudiant :</strong> 
             {{ $paiement->inscription->etudiant->nom }}
@@ -150,17 +150,17 @@
             <td class="right">{{ number_format($paiement->inscription->montant_total, 0, ',', ' ') }}</td>
         </tr>
         <tr>
-            <td>Montant déjà payé avant ce paiement</td>
+            <td>Montant déjà payé</td>
             <td class="right">
                 {{ number_format(($paiement->inscription->montant_verse - $paiement->montant), 0, ',', ' ') }}
             </td>
         </tr>
         <tr>
-            <td><strong>Montant payé aujourd'hui</strong></td>
+            <td><strong>Montant payé</strong></td>
             <td class="right"><strong>{{ number_format($paiement->montant, 0, ',', ' ') }}</strong></td>
         </tr>
         <tr>
-            <td>Montant total payé à ce jour</td>
+            <td>Montant total payé</td>
             <td class="right">{{ number_format($paiement->inscription->montant_verse, 0, ',', ' ') }}</td>
         </tr>
         <tr>
